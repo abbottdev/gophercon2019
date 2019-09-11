@@ -7,7 +7,7 @@
 ### Day 1
 
 - [Finding Dependable Go Packages](./finding-dependable-go-packages/README.md)
-- [Going Serverless](./going-serverless/README.md)
+- [Going Serverless](./going-serverless-for-fun/README.md)
 - [Robotics with Go is a Breeze](./robotics-with-go-is-a-breeze/README.md)
 - [Writing REST Services for the gRPC-curious](./writing-rest-services-for-the-grpc-curious/README.md)
 - [Lost in Transaction?](./lost-in-transaction/README.md)
