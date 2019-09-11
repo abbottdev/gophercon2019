@@ -1,0 +1,32 @@
+{
+  "headers": [
+    {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=7200"
+      }]
+    }, 
+    {
+      "source" : "*.md",
+      "headers" : [{
+        "key" : "Content-Type",
+        "value" : "text/html"
+      }]
+    },  
+    {
+      "source" : "**/*.*",
+      "headers" : [{
+        "key" : "Access-Control-Allow-Origin",
+        "value" : "http://localhost:8000"
+      }]
+    }, 
+    {
+      "source" : "404.html",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=300"
+      }]
+    }
+  ]
+}

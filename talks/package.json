@@ -1,0 +1,13 @@
+{
+  "name": "talks",
+  "dependencies": {
+    "serve": "^11.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "npx serve -l 3006 -n",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
