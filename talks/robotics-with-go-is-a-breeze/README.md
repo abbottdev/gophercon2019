@@ -26,6 +26,13 @@ Next generation robotics/IoT framework with support for 35 different platforms
 
 ![Code](./code.jpg)
 
+## Going further
+
+Miniature version of Golang, TinyGo for microcontrollers
+
+Ron Evans, creator of GoCV, GoBot and “technologist for hire” introduced TinyGo that can run directly on microcontrollers like Arduino and more. 
+
+TinyGo uses the LLVM compiler toolchain to create native code that can run directly even on the smallest of computing devices.
 
 ### Supported Platforms 
 

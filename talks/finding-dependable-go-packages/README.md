@@ -1,4 +1,6 @@
-# Finding dependable Go packages (Julie Qiu @JQiu25)
+# Finding dependable Go packages
+
+Speaker: Julie Qiu [@JQiu25](https://twitter.com/JQiu25)
 
 ## Intro
 
