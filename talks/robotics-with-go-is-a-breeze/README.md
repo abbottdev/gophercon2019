@@ -1,14 +1,15 @@
 # Robotics with Go is a breeze
 
-![Intro](./intro.jpg)
 
 ## Intro
+
+![Intro](./intro.jpg) <!-- .element: style="max-height: 50%; max-width: 50%" -->
 
 Ever wanted to control a drone with Go? Of course, who wouldn’t want to do that?! With gobot that’s as easy as goblin pie. Here, let me show you how you can build your own face tracking drone.
 
 ## Robotics background
 
-![Rover](./rover.jpg)
+![Rover](./rover.jpg) <!-- .element: style="max-height: 50%; max-width: 50%" -->
 
 JPL from Nasa open sourced a DIY mars rover. 
 

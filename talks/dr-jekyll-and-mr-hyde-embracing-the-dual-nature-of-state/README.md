@@ -19,3 +19,36 @@ This talk explains Luno’s approach to building application logic that is easy 
 - If you then expose these immutable events as gRPC streams, you provide a way for any microservice to react to a change in any other.
 - How ensuring that if your event consumers are idempotent (able to process the same event twice) your business logic becomes robust to most failures.
 - And finally, if you then explicitly introduce regular failures in your application logic, you start becoming confident about recovering when an actual failure occurs.
+
+![Immutable events](./immutable_events.jpg)
+![Dual nature of state](./dual_nature_of_state.jpg)
+
+Corver mentioned a lot of interesting Go libraries.
+
+### Shift
+
+![Shift](./shift.jpg)
+
+Shift provides the SQL persistence layer for a simple "finite state machine" domain model.
+
+https://github.com/luno/shift
+
+### Reflex
+
+![Streams](./streams.jpg)
+
+![Reflex](./reflex.jpg)
+
+Reflex provides an API for building distributed event notification streams.
+
+https://github.com/luno/reflex
+
+### Tempting Fate
+
+![Tempting Fate](./tempting_fate.jpg)
+
+This is a great library that allows you to "design for failure"! It allows you introduce random errors into your Go source code, thus testing whether the code can correctly recover from such errors. 
+
+Similar to the Netflix [Chaos Monkey](https://netflix.github.io/chaosmonkey/).
+
+https://github.com/luno/fate

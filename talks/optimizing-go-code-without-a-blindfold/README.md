@@ -1,4 +1,5 @@
 # Optimizing Go code without a blindfold
+<!-- .slide data-background="./intro.jpg" -->
 
 ## Speaker
 
