@@ -17,3 +17,15 @@ Ever wished you could use gRPC for your new service instead of tired old JSON/RE
 The grpc-gateway is a plugin of the Google protocol buffers compiler protoc. It reads protobuf service definitions and generates a reverse-proxy server which 'translates a RESTful HTTP API into gRPC. This server is generated according to the google.api.http annotations in your service definitions.
 
 This helps you provide your APIs in both gRPC and RESTful style at the same time.
+
+## Contd.
+
+![grpc-gateway](./grpc-gateway.jpg)
+
+## Problems with JSON
+
+![Problems](./problems-with-json.jpg)
+
+## Thanks
+
+![Thanks](./thanks.jpg)
