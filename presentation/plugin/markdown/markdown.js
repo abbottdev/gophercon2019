@@ -71,6 +71,13 @@
 			if( /data\-(markdown|separator|vertical|notes)/gi.test( name ) ) continue;
 
 			if( value ) {
+				switch(name) {
+					case 'data-background':
+						console.log('this will convert markdown url ' + value + ' to use baseUrl ' + section.getAttribute("data-baseurl"));
+						break;
+					default:
+						break;
+				}
 				result.push( name + '="' + value + '"' );
 			}
 			else {
@@ -114,7 +121,7 @@
 		// with parsing
 		content = content.replace( /<\/script>/g, SCRIPT_END_PLACEHOLDER );
 
-		return '<script type="text/template">' + content + '</script>';
+		return '<script type="text/template" data-baseurl="' + options.baseUrl + '">' + content + '</script>';
 
 	}
 
@@ -213,7 +220,8 @@
 								separator: section.getAttribute( 'data-separator' ),
 								verticalSeparator: section.getAttribute( 'data-separator-vertical' ),
 								notesSeparator: section.getAttribute( 'data-separator-notes' ),
-								attributes: getForwardedAttributes( section )
+								attributes: getForwardedAttributes( section ),
+								baseUrl: section.getAttribute("data-baseurl")
 							});
 						},
 
@@ -235,7 +243,8 @@
 						separator: section.getAttribute( 'data-separator' ),
 						verticalSeparator: section.getAttribute( 'data-separator-vertical' ),
 						notesSeparator: section.getAttribute( 'data-separator-notes' ),
-						attributes: getForwardedAttributes( section )
+						attributes: getForwardedAttributes( section ),
+						baseUrl: section.getAttribute("data-baseurl")
 					});
 
 				}
@@ -375,8 +384,18 @@
 
 			var notes = section.querySelector( 'aside.notes' );
 			var markdown = getMarkdownFromSlide( section );
+			var baseUrl = section.closest('[data-baseurl]');
 
-			section.innerHTML = marked( markdown );
+			var opts = null;
+
+			if (baseUrl != null) {
+				opts = {
+					baseUrl: baseUrl.getAttribute('data-baseurl')
+				}
+			};
+
+			section.innerHTML = marked( markdown, opts );
+
 			addAttributes( 	section, section, null, section.getAttribute( 'data-element-attributes' ) ||
 							section.parentNode.getAttribute( 'data-element-attributes' ) ||
 							DEFAULT_ELEMENT_ATTRIBUTES_SEPARATOR,
@@ -390,6 +409,16 @@
 				section.appendChild( notes );
 			}
 
+			if (opts && opts.baseUrl) {
+				//update any urls 
+				let background = section.getAttribute('data-background');
+				if (background != null && background != '') {
+
+					section.setAttribute('data-background', opts.baseUrl + background);
+				}
+				
+			}
+			
 		} );
 
 		return Promise.resolve();

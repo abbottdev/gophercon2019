@@ -1,0 +1,10 @@
+{
+  "name": "gophercon2019",
+  "scripts": {
+    "start": "npx concurrently npm:start-presentation npm:start-talks",
+    "start-presentation": "cd presentation && npm start",
+    "start-talks": "cd talks && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}

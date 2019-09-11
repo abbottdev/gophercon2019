@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>GopherCon 2019</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/night.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,18 +25,144 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- <section data-background="img/welcome.jpg">
+					<h1 style="position: relative; top: 450px;">GopherCon2019</h1>
+
+					<aside> 
+					</aside>
+				</section> -->
+
+				<section 
+					id="README" 
+					data-markdown="http://localhost:3006/README.md"
+					data-baseurl="http://localhost:3006/"
+					data-separator-vertical="^([\n\r\s]+(?![^#]))|(\n\n)"
+					data-separator="^\r?\n---\r?\n$">
+				</section>
+
+				<section 
+					id="SPONSORS" 
+					data-markdown="http://localhost:3006/Sponsors.md"
+					data-baseurl="http://localhost:3006/"
+					data-separator-vertical="^([\n\r\s]+(?![^#]))|(\n\n)"
+					data-separator="^\r?\n---\r?\n$">
+				</section>
+				
 			</div>
 		</div>
+ 
+		
+		<template id="section-template">
+			<section 
+				id="FOLDER_NAME" 
+				data-markdown="http://localhost:3006/FOLDER_NAME/README.md"
+				data-baseurl="http://localhost:3006/FOLDER_NAME/"
+				data-separator-vertical="^[\n\r\s]+(?![^#\-])"
+				data-separator="^\r?\n---\r?\n$">
+			</section>
+		</template>
 
-		<script src="js/reveal.js"></script>
+		<script type="text/json" id="slide-sources">
+			[
+				{ "folderName": "finding-dependable-go-packages" },
+				{ "folderName": "going-serverless-for-fun" },
+				{ "folderName": "robotics-with-go-is-a-breeze" },
+				{ "folderName": "writing-rest-services-for-the-grpc-curious" },
+				{ "folderName": "lost-in-transaction" },
+				{ "folderName": "energy-implications-of-your-go-code" },
+				{ "folderName": "a-go-security-journey" },
+				{ "folderName": "improving-depenendencies-for-everyone" },
+				{ "folderName": "experimenting-with-golang-and-webassembly" },
+				{ "folderName": "optimizing-go-code-without-a-blindfold" },
+				{ "folderName": "write-less-code-generate-more" },
+				{ "folderName": "from-chaos-to-domain-driven-design" },
+				{ "folderName": "monolith-decomposition" },
+				{ "folderName": "dr-jekyll-and-mr-hyde-embracing-the-dual-nature-of-state" },
+				{ "folderName": "gio" }
+			]
+		</script>
 
 		<script>
+
+			// The base Url is where the content is hosted. At some point, it would be beneficial to swap this out
+			// for a github repo URL, and use the github API to determine the files to include instead of the hard-coded JSON.
+			const baseUrl = "http://localhost:3006/";
+			
+			let folders = JSON.parse(document.querySelector('#slide-sources').textContent);
+
+			// This method will clone the section template for each folder referenced in the input 
+			// This is a convention based system that allows an entire markdown site to be presented as a 
+			// presentation. 
+
+			if ('content' in document.createElement('template')) {
+				var template = document.querySelector('#section-template');
+
+				folders
+					.sort((a, b) => a.order > b.order)
+					.map(folder => {
+						var clone = document.importNode(template.content, true);
+						var insertAfter = document.querySelector(folder.insertAfter);
+				
+						var section = clone.querySelector('section');
+
+						section.setAttribute('id', folder.folderName);
+
+						let markdownUrl = baseUrl + folder.folderName + '/' + (folder.fileName == null ? 'README.md' : folder.fileName);
+
+						section.setAttribute('data-markdown', markdownUrl);
+						section.setAttribute('data-original-markdown', markdownUrl);
+						section.setAttribute('data-baseurl', baseUrl + folder.folderName + '/');
+						
+						if (insertAfter == null) {
+							document.querySelector(".slides").appendChild(section);
+						} else {
+							var insertBefore = insertAfter.nextSibling;
+
+							if (insertBefore == null) {
+								insertAfter.parentElement.appendChild(section);
+							} else {
+								insertBefore.parentNode.insertBefore(clone, insertBefore);
+							}
+						}
+						
+					});
+
+			}			
+		</script>
+
+		<script src="js/reveal.js"></script>
+		<script src="plugin/markdown/marked.js"></script>
+
+		<script>
+			// Create reference instance
+			const marked = window.marked;
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
+			// Get reference
+			const renderer = new marked.Renderer();
+
+			renderer.link = function(href, title, text)  {
+				// Find the slide that this href points to...
+
+				let targetUrl = new URL(href, baseUrl).href;
+
+				let targetSection = document.querySelector("[data-original-markdown='" + targetUrl + "']");
+
+				if (targetSection && targetSection.id) {
+					console.log("Found a data-markdown section that matches the href used in a link: " + targetSection.id);
+					targetUrl = "#" + targetSection.id;
+				} else {
+					targetUrl = href;
+				}
+
+				return '<a href="' + targetUrl + '" title="' + title + '">' + text + '</a>';
+			};
+
 			Reveal.initialize({
+				markdown: {
+					renderer: renderer
+				},
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

@@ -1,4 +1,5 @@
 const sass = require('node-sass');
+const fs = require('fs');
 
 module.exports = grunt => {
 
