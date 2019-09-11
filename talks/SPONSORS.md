@@ -30,7 +30,10 @@ More than 10 million software developers rely on Sonatype to innovate faster whi
 
 Go is fully supported across the Nexus Platform, giving Go development teams an easy way to manage Go packages and automatically eliminate security risk across their entire software development lifecycle, including production applications.
 
-## Delegate Sponsors (The Swag)
+## Delegate Sponsors
+
+(Yes, The providers of swag.) <!-- .element: class="fragment" data-fragment-index="1" -->
+
 
 - Curve
 - JetBrains - We offer top-notch IDEs and team productivity tools, and our latest offering is GoLand, a brand new IDE built specially for Go developers.

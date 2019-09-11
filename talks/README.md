@@ -2,6 +2,12 @@
 <!-- .element: style="position: relative; top: 450px;" -->
 <!-- .slide: data-background="./welcome.jpg" -->
 
+## What is this about?
+
+This is an information gathering of details from the talks, to give you enough information to look at it yourself. 
+
+*(We're not training today, this is disseminating information)*
+
 ## Agenda
 
 ### Day 1
@@ -17,8 +23,6 @@
 
 ### Day 2
 
-Agenda:
-
 - [Improving Dependencies for Everyone](./improving-depenendencies-for-everyone/README.md)
 - [Experimenting with Golang and Webassembly](./experimenting-with-golang-and-webassembly/README.md)
 - [Optimizing Go Code Without a Blindfold](./optimizing-go-code-without-a-blindfold/README.md)
@@ -31,3 +35,11 @@ Agenda:
 ## Sponsors
 
 [View the sponsors here](./SPONSORS.md)
+
+## Virtual Conference
+
+If you wanna feel the love, you can experience all the talks once they've been uploaded to the GopherCon Youtube channel.
+
+[GopherCon UK on Youtube](https://www.youtube.com/channel/UC9ZNrGdT2aAdrNbX78lbNlQ/videos)
+
+You can see previous years talks and get loads of knowledge this way.
